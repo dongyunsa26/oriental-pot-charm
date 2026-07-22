@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المعرض · 东方锅韵 · Oriental Pot Charm</title>
+<meta name="description" content="معرض صور 东方锅韵 Oriental Pot Charm — لمحة عن طوابقنا الثلاثة وأجوائنا.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lacquer:#a3272a; --lacquer-dark:#7c1c1f; --charcoal:#1b1714; --charcoal-2:#241f1a;
+    --gold:#c0902f; --jade:#2c5c50; --sand:#f1e6d2; --paper:#faf5ea; --ink:#221d18;
+    --bg:var(--charcoal); --bg-2:var(--charcoal-2); --fg:var(--sand); --fg-muted:rgba(241,230,210,.65);
+    --border:rgba(241,230,210,.12);
+  }
+  html.light{ --bg:var(--paper); --bg-2:#f2e9d6; --fg:var(--ink); --fg-muted:rgba(34,29,24,.65); --border:rgba(34,29,24,.1); }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--fg);line-height:1.8;transition:background .3s,color .3s;}
+  .zh{font-family:'Noto Sans SC',sans-serif;direction:ltr;unicode-bidi:isolate;}
+  a{color:inherit;text-decoration:none;}
+  section{padding:60px 7vw 100px;}
+  .eyebrow{font-family:'Inter';letter-spacing:.22em;font-size:11.5px;text-transform:uppercase;opacity:.6;margin-bottom:14px;}
+  .center{text-align:center;}
+  .section-title{font-family:'Aref Ruqaa',serif;font-size:34px;color:var(--gold);margin:0 0 8px;}
+  .section-sub{opacity:.65;font-size:14px;margin-bottom:40px;}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 7vw;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);}
+  nav .brand{display:flex;align-items:center;gap:10px;}
+  nav .brand img{width:32px;}
+  nav .brand .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:21px;color:var(--gold);}
+  nav ul{display:flex;gap:24px;list-style:none;font-size:13.5px;margin:0;padding:0;}
+  nav a:hover{color:var(--gold);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{background:none;border:1px solid var(--border);color:var(--fg);width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .cta-btn{background:var(--lacquer);color:var(--sand)!important;padding:9px 20px;border-radius:24px;font-size:13px;white-space:nowrap;border:none;}
+  .burger{display:none;background:none;border:none;color:var(--fg);font-size:22px;}
+  @media(max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+
+  .g-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;}
+  .g-tab{padding:8px 18px;border-radius:18px;font-size:13px;border:1px solid var(--border);background:var(--bg-2);color:var(--fg-muted);}
+  .g-tab.active{background:var(--lacquer);color:#fff;border-color:var(--lacquer);}
+
+  .gallery-grid{columns:4 220px;column-gap:14px;}
+  @media(max-width:760px){.gallery-grid{columns:2 160px;}}
+  .g-item{break-inside:avoid;margin-bottom:14px;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;
+    aspect-ratio:var(--ar,1/1);background:linear-gradient(160deg,var(--lacquer),var(--jade));
+    display:flex;align-items:flex-end;color:rgba(255,255,255,.85);font-size:12px;font-family:'Inter';
+    padding:12px;transition:transform .25s;}
+  .g-item:hover{transform:translateY(-4px);}
+  .g-item.video::after{content:'▶';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-size:26px;color:rgba(255,255,255,.7);}
+  .g-item .tag{background:rgba(0,0,0,.35);padding:4px 10px;border-radius:12px;backdrop-filter:blur(4px);}
+
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:200;padding:6vw;}
+  .lightbox.open{display:flex;}
+  .lightbox-box{background:var(--bg-2);border-radius:10px;padding:40px;max-width:520px;text-align:center;}
+  .lightbox-close{position:absolute;top:26px;left:26px;background:none;border:none;color:#fff;font-size:28px;}
+  .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;
+    width:44px;height:44px;border-radius:50%;font-size:18px;}
+  .lightbox-prev{right:26px;} .lightbox-next{left:26px;}
+
+  footer{background:var(--charcoal);color:var(--sand);padding:50px 7vw 30px;border-top:1px solid rgba(241,230,210,.1);text-align:center;}
+  footer .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:22px;color:var(--gold);}
+  footer p{font-size:12px;opacity:.5;margin-top:14px;}
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand"><img src="logo.png" alt="东方锅韵 logo"><span class="zh-name">东方锅韵</span></div>
+    <ul>
+      <li><a href="index.html#why">لماذا نحن</a></li>
+      <li><a href="index.html#menu">المنيو</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="gallery.html">المعرض</a></li>
+      <li><a href="index.html#faq">الأسئلة الشائعة</a></li>
+      <li><a href="index.html#location">تواصل معنا</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="darkToggle" title="تبديل المظهر">☀</button>
+      <a href="https://wa.me/962547033461" target="_blank" class="cta-btn">احجز طاولتك</a>
+      <button class="burger" id="burgerBtn">☰</button>
+    </div>
+  </nav>
+
+  <section>
+    <p class="eyebrow center" style="margin-top:20px;">Gallery</p>
+    <p class="section-title center">معرض 东方锅韵</p>
+    <p class="section-sub center">望塔台 · 金萤厅 · 天穹厅 — تصفّح حسب الطابق</p>
+
+    <div class="g-tabs" id="gTabs">
+      <button class="g-tab active" data-cat="all">الكل</button>
+      <button class="g-tab" data-cat="floor1">望塔台 — شرفة البرج</button>
+      <button class="g-tab" data-cat="floor2">金萤厅 — الأضواء الذهبية</button>
+      <button class="g-tab" data-cat="floor3">天穹厅 — قاعة السماء</button>
+      <button class="g-tab" data-cat="video">فيديو</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lbPrev">›</button>
+    <button class="lightbox-nav lightbox-next" id="lbNext">‹</button>
+    <div class="lightbox-box">
+      <p style="font-family:'Aref Ruqaa',serif;font-size:22px;margin:0 0 6px;" id="lightboxTitle"></p>
+      <p style="opacity:.7;font-size:13.5px;" id="lightboxDesc"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p class="zh-name">东方锅韵</p>
+    <p>Oriental Pot Charm — Riyadh © 2026</p>
+  </footer>
+
+<script>
+  const root = document.documentElement;
+  const darkToggle = document.getElementById('darkToggle');
+  function applyTheme(t){
+    if(t === 'light'){ root.classList.add('light'); darkToggle.textContent = '☾'; }
+    else { root.classList.remove('light'); darkToggle.textContent = '☀'; }
+  }
+  applyTheme(localStorage.getItem('opc-theme') || 'dark');
+  darkToggle.addEventListener('click', () => {
+    const next = root.classList.contains('light') ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('opc-theme', next);
+  });
+  const burger = document.getElementById('burgerBtn');
+  const navUl = document.querySelector('nav ul');
+  burger.addEventListener('click', () => {
+    const shown = navUl.style.display === 'flex';
+    navUl.style.cssText = shown ? '' : 'display:flex;flex-direction:column;position:absolute;top:100%;right:0;left:0;background:var(--bg);padding:20px 7vw;border-bottom:1px solid var(--border);gap:16px;';
+  });
+
+  // ---------- Gallery data (replace labels with real photo credits when photos are added) ----------
+  const items = [
+    {label:'شرفة إطلالة البرج', cat:'floor1', ar:'1/1.3', desc:'السطح الرئيسي بإطلالة مباشرة على برج المملكة، مع مرشات تلطيف الجو.', type:'photo'},
+    {label:'مشهد ليلي من السطح', cat:'floor1', ar:'1/1', desc:'إطلالة البرج ليلاً من شرفة السطح.', type:'photo'},
+    {label:'قاعة الأضواء الذهبية', cat:'floor2', ar:'1/1.4', desc:'صالة الطابق الثاني، إضاءة معلّقة ذهبية ومقاعد مرتفعة.', type:'photo'},
+    {label:'ركن الجلسات المرتفعة', cat:'floor2', ar:'1/1.1', desc:'منصة الجلسات المرتفعة بالطابق الثاني.', type:'photo'},
+    {label:'إطلالة زجاجية على البرج', cat:'floor2', ar:'1/1', desc:'زجاج الطابق الثاني المطل على برج المملكة.', type:'photo'},
+    {label:'قاعة السماء', cat:'floor3', ar:'1/1.5', desc:'صالة الطابق الثالث بسقف مصمم على شكل السماء المفتوحة.', type:'photo'},
+    {label:'تفاصيل السقف السماوي', cat:'floor3', ar:'1/1', desc:'تصميم السقف الزجاجي بالطابق الثالث.', type:'photo'},
+    {label:'جولة بالمطعم', cat:'video', ar:'1/1.2', desc:'فيديو جولة سريعة داخل الطوابق الثلاثة.', type:'video'},
+    {label:'تحضير الشواء الليلي', cat:'video', ar:'1/1', desc:'لقطات من تحضير محطة الشواء.', type:'video'},
+  ];
+  const grid = document.getElementById('galleryGrid');
+  let activeCat = 'all';
+  let currentIndex = 0;
+  let currentList = [];
+
+  function renderGallery(){
+    const filtered = items.filter(i => activeCat === 'all' || i.cat === activeCat);
+    currentList = filtered;
+    grid.innerHTML = '';
+    filtered.forEach((g, idx) => {
+      const el = document.createElement('div');
+      el.className = 'g-item' + (g.type === 'video' ? ' video' : '');
+      el.style.setProperty('--ar', g.ar);
+      el.innerHTML = `<span class="tag">${g.label}</span>`;
+      el.addEventListener('click', () => openLightbox(idx));
+      grid.appendChild(el);
+    });
+  }
+  document.getElementById('gTabs').addEventListener('click', e => {
+    if(e.target.classList.contains('g-tab')){
+      document.querySelectorAll('.g-tab').forEach(t => t.classList.remove('active'));
+      e.target.classList.add('active');
+      activeCat = e.target.dataset.cat;
+      renderGallery();
+    }
+  });
+  renderGallery();
+
+  const lightbox = document.getElementById('lightbox');
+  function openLightbox(idx){
+    currentIndex = idx;
+    showLightboxItem();
+    lightbox.classList.add('open');
+  }
+  function showLightboxItem(){
+    const g = currentList[currentIndex];
+    document.getElementById('lightboxTitle').textContent = g.label;
+    document.getElementById('lightboxDesc').textContent = g.desc;
+  }
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % currentList.length; showLightboxItem();
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + currentList.length) % currentList.length; showLightboxItem();
+  });
+</script>
+</body>
+</html>
