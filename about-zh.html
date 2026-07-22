@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于我们 · 东方锅韵 · Oriental Pot Charm</title>
+<meta name="description" content="东方锅韵 Oriental Pot Charm 的品牌故事、愿景与使命。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lacquer:#a3272a; --lacquer-dark:#7c1c1f; --charcoal:#1b1714; --charcoal-2:#241f1a;
+    --gold:#c0902f; --jade:#2c5c50; --sand:#f1e6d2; --paper:#faf5ea; --ink:#221d18;
+    --bg:var(--charcoal); --bg-2:var(--charcoal-2); --fg:var(--sand); --fg-muted:rgba(241,230,210,.65);
+    --border:rgba(241,230,210,.12);
+  }
+  html.light{ --bg:var(--paper); --bg-2:#f2e9d6; --fg:var(--ink); --fg-muted:rgba(34,29,24,.65); --border:rgba(34,29,24,.1); }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--fg);line-height:1.8;transition:background .3s,color .3s;}
+  .ar-sans{font-family:'IBM Plex Sans Arabic',sans-serif;direction:rtl;unicode-bidi:isolate;}
+  a{color:inherit;text-decoration:none;}
+  section{padding:90px 7vw;position:relative;}
+  .eyebrow{font-family:'Inter';letter-spacing:.22em;font-size:11.5px;text-transform:uppercase;opacity:.6;margin-bottom:14px;}
+  .center{text-align:center;}
+  .section-title{font-family:'Noto Serif SC';font-weight:900;font-size:30px;color:var(--gold);margin:0 0 6px;}
+  .section-title-en{font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-bottom:44px;}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 7vw;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);}
+  nav .brand{display:flex;align-items:center;gap:10px;}
+  nav .brand img{width:32px;}
+  nav .brand .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:21px;color:var(--gold);}
+  nav ul{display:flex;gap:24px;list-style:none;font-size:13.5px;margin:0;padding:0;}
+  nav a:hover{color:var(--gold);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{background:none;border:1px solid var(--border);color:var(--fg);width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .cta-btn{background:var(--lacquer);color:var(--sand)!important;padding:9px 20px;border-radius:24px;font-size:13px;white-space:nowrap;border:none;}
+  .burger{display:none;background:none;border:none;color:var(--fg);font-size:22px;}
+  @media(max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+  .lang-switch{font-size:12px;border:1px solid var(--border);border-radius:14px;padding:5px 12px;opacity:.8;}
+
+  .hero{min-height:42vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(ellipse at 50% 0%, rgba(163,39,42,.28), transparent 60%);}
+  .hero .zh-title{font-family:'Ma Shan Zheng',cursive;font-size:clamp(38px,7vw,58px);color:var(--gold);}
+  .hero p.en{font-size:13px;opacity:.6;letter-spacing:.15em;text-transform:uppercase;margin-top:10px;}
+
+  .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+  @media(max-width:860px){.story-grid{grid-template-columns:1fr;}}
+  .story p{font-size:15px;opacity:.9;margin-bottom:16px;}
+  .motif-box{background:var(--paper);border-radius:8px;padding:24px 16px 8px;}
+
+  .mvv{background:var(--bg-2);}
+  .mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  @media(max-width:860px){.mvv-grid{grid-template-columns:1fr;}}
+  .mvv-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:30px 24px;}
+  .mvv-card .glyph{font-family:'Noto Serif SC';font-weight:900;font-size:30px;color:var(--lacquer);margin-bottom:14px;}
+  .mvv-card h4{font-size:16px;margin:0 0 8px;}
+  .mvv-card p{font-size:13.5px;opacity:.7;margin:0;}
+
+  .timeline{max-width:680px;margin:0 auto;position:relative;}
+  .timeline::before{content:'';position:absolute;top:0;bottom:0;left:19px;width:2px;background:var(--border);}
+  .t-item{position:relative;padding-left:56px;padding-bottom:44px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-dot{position:absolute;left:11px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--lacquer);border:3px solid var(--bg);}
+  .t-item .date{font-family:'Inter';font-size:11.5px;color:var(--gold);letter-spacing:.1em;}
+  .t-item h4{font-size:16px;margin:6px 0 6px;}
+  .t-item p{font-size:13.5px;opacity:.7;margin:0;max-width:520px;}
+
+  .floors{background:var(--bg-2);}
+  .floor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:860px){.floor-grid{grid-template-columns:1fr;}}
+  .floor-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:30px 22px;}
+  .floor-card .zh2{font-family:'Noto Serif SC';font-weight:700;font-size:22px;color:var(--gold);margin:0 0 4px;}
+  .floor-card p{font-size:13px;opacity:.7;margin:0;}
+
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:22px;}
+  .team-card{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:24px 18px;text-align:center;}
+  .avatar{width:70px;height:70px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(135deg,var(--lacquer),var(--jade));
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:11px;font-family:'Inter';}
+  .team-card h5{font-size:14.5px;margin:0 0 4px;}
+  .team-card span{font-size:12px;opacity:.6;}
+  .flag-note{
+    font-size:12.5px;background:rgba(192,144,47,.1);border:1px solid rgba(192,144,47,.35);
+    border-radius:6px;padding:12px 16px;max-width:560px;margin:30px auto 0;text-align:center;opacity:.9;
+  }
+
+  footer{background:var(--charcoal);color:var(--sand);padding:50px 7vw 30px;border-top:1px solid rgba(241,230,210,.1);text-align:center;}
+  footer .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:22px;color:var(--gold);}
+  footer p{font-size:12px;opacity:.5;margin-top:14px;}
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand"><img src="logo.png" alt="东方锅韵 logo"><span class="zh-name">东方锅韵</span></div>
+    <ul>
+      <li><a href="index-zh.html#why">为什么选择我们</a></li>
+      <li><a href="index-zh.html#menu">菜单</a></li>
+      <li><a href="about-zh.html">关于我们</a></li>
+      <li><a href="gallery-zh.html">图库</a></li>
+      <li><a href="index-zh.html#faq">常见问题</a></li>
+      <li><a href="index-zh.html#location">联系我们</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="about.html" class="lang-switch">العربية</a>
+      <button class="icon-btn" id="darkToggle" title="切换主题">☀</button>
+      <a href="https://wa.me/962547033461" target="_blank" class="cta-btn">立即预订</a>
+      <button class="burger" id="burgerBtn">☰</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p class="zh-title">关于我们</p>
+    <p class="en">About Oriental Pot Charm</p>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section class="story">
+    <div class="story-grid">
+      <div>
+        <p class="eyebrow">Our Story</p>
+        <h2 class="section-title">品牌故事</h2>
+        <p class="section-title-en"></p>
+        <p>东方锅韵源于一个简单的理念：将中式火锅烧烤的烟火气，与阿拉伯人心中"绿洲"的意象——山、水、树林——融合在一起。</p>
+        <p>我们不只是一家中餐厅，也不只是一片阿拉伯绿洲。我们是两种文化的交汇点，让每一位客人都能同时感受到熟悉与尊贵 —— 从我们正对王国大厦的选址，到三层楼每一处的装饰细节。</p>
+      </div>
+      <div class="motif-box">
+        <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="20" y1="170" x2="780" y2="170" stroke="#c0902f" stroke-width="1.5" opacity="0.4"/>
+          <circle cx="400" cy="60" r="26" fill="none" stroke="#a3272a" stroke-width="3"/>
+          <path d="M40 170 L110 90 L150 130 L200 60 L250 130 L300 100 L340 170" fill="none" stroke="#221d18" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M340 170 L385 140 L420 170" fill="none" stroke="#221d18" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+          <path d="M420 170 Q450 160 480 170 T540 170 T600 170" fill="none" stroke="#2c5c50" stroke-width="3" stroke-linecap="round"/>
+          <path d="M540 170 Q600 130 650 170 Q700 145 760 170" fill="none" stroke="#c0902f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <g stroke="#a3272a" stroke-width="3" fill="none" stroke-linecap="round">
+            <line x1="700" y1="170" x2="708" y2="110"/>
+            <path d="M708 110 Q690 95 672 100"/><path d="M708 110 Q715 92 735 90"/>
+            <path d="M708 110 Q690 108 675 118"/><path d="M708 110 Q722 105 738 112"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION / VISION / VALUES ============ -->
+  <section class="mvv">
+    <p class="eyebrow center">Mission · Vision · Values</p>
+    <p class="section-title center">愿景、使命与价值观</p>
+    <p class="section-title-en center"></p>
+    <div class="mvv-grid">
+      <div class="mvv-card">
+        <div class="glyph">识</div>
+        <h4>我们的愿景</h4>
+        <p>成为利雅得首屈一指的中阿文化融合餐饮目的地，让两种文化在同一张餐桌上相遇。</p>
+      </div>
+      <div class="mvv-card">
+        <div class="glyph">诚</div>
+        <h4>我们的使命</h4>
+        <p>提供100%正宗的火锅与烧烤体验，以尊重每位客人习惯与口味的待客之道。</p>
+      </div>
+      <div class="mvv-card">
+        <div class="glyph">缘</div>
+        <h4>我们的价值观</h4>
+        <p>正宗、真诚待客，以及对每个细节的用心 —— 从食材到装饰。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="timeline">
+    <p class="eyebrow center">Our Journey</p>
+    <p class="section-title center">品牌历程</p>
+    <p class="section-title-en center"></p>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="date">第一阶段</div>
+        <h4>选址</h4>
+        <p>选定利雅得核心地段，正对王国大厦。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="date">第二阶段</div>
+        <h4>设计与装修</h4>
+        <p>打造三层不同氛围的楼层：观景露台、金色灯光大厅、天空之厅。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="date">第三阶段</div>
+        <h4>品牌视觉建设</h4>
+        <p>完成完整品牌体系：标志、色彩系统、菜单与室内指示牌。</p>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="date">即将到来</div>
+        <h4>正式开业</h4>
+        <p>我们正在筹备迎接您的到来 —— 敬请关注开业时间。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLOORS ============ -->
+  <section class="floors">
+    <p class="eyebrow center">Our Space</p>
+    <p class="section-title center">三层楼，三种氛围</p>
+    <p class="section-title-en center"></p>
+    <div class="floor-grid">
+      <div class="floor-card"><p class="zh2">望塔台</p><p>露台正对王国大厦，配有降温喷雾系统。</p></div>
+      <div class="floor-card"><p class="zh2">金萤厅</p><p>二楼大厅，悬挂式金色灯饰与高台座位区。</p></div>
+      <div class="floor-card"><p class="zh2">天穹厅</p><p>三楼大厅，天空造型天花板设计。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section id="team">
+    <p class="eyebrow center">Our Team</p>
+    <p class="section-title center">团队介绍</p>
+    <p class="section-title-en center"></p>
+    <div class="team-grid">
+      <div class="team-card"><div class="avatar">照片</div><h5>姓名</h5><span>职位</span></div>
+      <div class="team-card"><div class="avatar">照片</div><h5>姓名</h5><span>行政主厨</span></div>
+      <div class="team-card"><div class="avatar">照片</div><h5>姓名</h5><span>餐厅经理</span></div>
+    </div>
+    <p class="flag-note">⚠ 此部分结构已就绪，等待真实团队姓名、职位与主厨照片 — 请提供后替换以上占位内容。</p>
+  </section>
+
+  <footer>
+    <p class="zh-name">东方锅韵</p>
+    <p>Oriental Pot Charm — Riyadh © 2026</p>
+  </footer>
+
+<script>
+  const root = document.documentElement;
+  const darkToggle = document.getElementById('darkToggle');
+  function applyTheme(t){
+    if(t === 'light'){ root.classList.add('light'); darkToggle.textContent = '☾'; }
+    else { root.classList.remove('light'); darkToggle.textContent = '☀'; }
+  }
+  applyTheme(localStorage.getItem('opc-theme') || 'dark');
+  darkToggle.addEventListener('click', () => {
+    const next = root.classList.contains('light') ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('opc-theme', next);
+  });
+  const burger = document.getElementById('burgerBtn');
+  const navUl = document.querySelector('nav ul');
+  burger.addEventListener('click', () => {
+    const shown = navUl.style.display === 'flex';
+    navUl.style.cssText = shown ? '' : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);padding:20px 7vw;border-bottom:1px solid var(--border);gap:16px;';
+  });
+</script>
+</body>
+</html>
