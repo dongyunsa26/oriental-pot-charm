@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>东方锅韵 · Oriental Pot Charm — 利雅得</title>
+<meta name="description" content="东方锅韵 Oriental Pot Charm — 正对王国大厦的自助火锅与正宗中式烧烤，利雅得。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lacquer:#a3272a; --lacquer-dark:#7c1c1f; --charcoal:#1b1714; --charcoal-2:#241f1a;
+    --gold:#c0902f; --jade:#2c5c50; --sand:#f1e6d2; --paper:#faf5ea; --ink:#221d18;
+    --bg:var(--charcoal); --bg-2:var(--charcoal-2); --fg:var(--sand); --fg-muted:rgba(241,230,210,.65);
+    --border:rgba(241,230,210,.12);
+  }
+  html.light{ --bg:var(--paper); --bg-2:#f2e9d6; --fg:var(--ink); --fg-muted:rgba(34,29,24,.65); --border:rgba(34,29,24,.1); }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--fg);line-height:1.8;transition:background .3s,color .3s;}
+  .ar{font-family:'Aref Ruqaa','IBM Plex Sans Arabic',serif;direction:rtl;unicode-bidi:isolate;}
+  .ar-sans{font-family:'IBM Plex Sans Arabic',sans-serif;direction:rtl;unicode-bidi:isolate;}
+  a{color:inherit;text-decoration:none;}
+  section{padding:100px 7vw;position:relative;}
+  .eyebrow{font-family:'Inter';letter-spacing:.22em;font-size:11.5px;text-transform:uppercase;opacity:.6;margin-bottom:14px;}
+  .center{text-align:center;}
+  .section-title{font-family:'Noto Serif SC';font-weight:900;font-size:32px;color:var(--gold);margin:0 0 6px;}
+  .section-title-en{font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-bottom:44px;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 7vw;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);}
+  nav .brand{display:flex;align-items:center;gap:10px;}
+  nav .brand img{width:32px;}
+  nav .brand .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:21px;color:var(--gold);}
+  nav ul{display:flex;gap:24px;list-style:none;font-size:13.5px;margin:0;padding:0;}
+  nav a:hover{color:var(--gold);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{background:none;border:1px solid var(--border);color:var(--fg);width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .cta-btn{background:var(--lacquer);color:var(--sand)!important;padding:9px 20px;border-radius:24px;font-size:13px;white-space:nowrap;border:none;}
+  .burger{display:none;background:none;border:none;color:var(--fg);font-size:22px;}
+  @media(max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+  .lang-switch{font-size:12px;border:1px solid var(--border);border-radius:14px;padding:5px 12px;opacity:.8;}
+
+  /* ---------- HERO ---------- */
+  .hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(ellipse at 50% 15%, rgba(163,39,42,.32), transparent 55%), linear-gradient(180deg, var(--bg) 0%, var(--charcoal) 100%);}
+  html.light .hero{background:radial-gradient(ellipse at 50% 15%, rgba(163,39,42,.14), transparent 55%), var(--bg);}
+  .hero .zh-title{font-family:'Ma Shan Zheng',cursive;font-size:clamp(52px,10vw,104px);color:var(--gold);line-height:1;}
+  .hero .en-title{font-family:'Inter';letter-spacing:.4em;font-size:13px;text-transform:uppercase;opacity:.75;margin-top:16px;}
+  .hero .zh-line{font-size:clamp(16px,2.2vw,20px);max-width:600px;margin:26px auto 0;opacity:.9;}
+  .hero .loc{font-size:13px;opacity:.55;margin-top:20px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:34px;}
+  .btn{display:inline-block;padding:13px 28px;border-radius:26px;font-size:13.5px;font-weight:500;border:none;}
+  .btn.solid{background:var(--lacquer);color:#fff;}
+  .btn.outline{border:1px solid var(--fg);color:var(--fg);background:transparent;}
+  .btn.ghost{color:var(--gold);border:1px solid var(--gold);background:transparent;}
+
+  /* ---------- WHY US ---------- */
+  .why{background:var(--bg-2);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  @media(max-width:860px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:30px 24px;}
+  .why-card .glyph{font-family:'Noto Serif SC';font-weight:900;font-size:30px;color:var(--lacquer);margin-bottom:14px;}
+  .why-card h4{font-size:16.5px;margin:0 0 8px;}
+  .why-card p{font-size:13.5px;opacity:.7;margin:0;}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat b{font-family:'Inter';font-size:clamp(30px,4vw,44px);color:var(--gold);display:block;}
+  .stat span{font-size:12.5px;opacity:.65;}
+
+  /* ---------- MENU ---------- */
+  .menu-section{background:var(--bg);}
+  .menu-toolbar{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;}
+  .menu-search{flex:1;min-width:200px;max-width:340px;padding:10px 16px;border-radius:24px;border:1px solid var(--border);
+    background:var(--bg-2);color:var(--fg);font-family:inherit;font-size:13.5px;}
+  .menu-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;}
+  .tab{padding:7px 16px;border-radius:18px;font-size:12.5px;border:1px solid var(--border);background:var(--bg-2);color:var(--fg-muted);}
+  .tab.active{background:var(--lacquer);color:#fff;border-color:var(--lacquer);}
+  .dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+  .dish-card{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:transform .25s;}
+  .dish-card:hover{transform:translateY(-4px);}
+  .dish-img{height:130px;background:linear-gradient(135deg,var(--lacquer),var(--charcoal));display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC';font-weight:900;font-size:15px;color:rgba(255,255,255,.3);}
+  .dish-body{padding:16px 16px 18px;}
+  .dish-body .zh-name{font-family:'Noto Serif SC';font-weight:700;font-size:15px;color:var(--gold);display:block;}
+  .dish-body .ar-name{font-size:13.5px;margin-top:2px;display:block;opacity:.8;}
+  .dish-body .cat-badge{display:inline-block;font-size:10px;opacity:.55;margin-top:6px;}
+  .dish-body .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+  .dish-body .price{font-family:'Inter';font-size:13.5px;color:var(--gold);}
+  .empty-state{text-align:center;padding:60px 20px;opacity:.6;font-size:14px;grid-column:1/-1;}
+  .menu-cta-links{text-align:center;margin-top:50px;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{background:var(--bg-2);}
+  .gallery-grid{columns:4 220px;column-gap:14px;}
+  @media(max-width:760px){.gallery-grid{columns:2 160px;}}
+  .g-item{break-inside:avoid;margin-bottom:14px;border-radius:8px;overflow:hidden;cursor:pointer;
+    aspect-ratio:var(--ar,1/1);background:linear-gradient(160deg,var(--lacquer),var(--jade));
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:11px;
+    font-family:'Inter';text-align:center;padding:8px;}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;padding:6vw;}
+  .lightbox.open{display:flex;}
+  .lightbox-box{background:var(--bg-2);border-radius:10px;padding:40px;max-width:480px;text-align:center;}
+  .lightbox-close{position:absolute;top:26px;left:26px;background:none;border:none;color:#fff;font-size:26px;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:860px){.testimonials-grid{grid-template-columns:1fr;}}
+  .t-card{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:26px 22px;}
+  .t-card .stars{color:var(--gold);font-size:14px;margin-bottom:10px;}
+  .t-card p{font-size:13.5px;opacity:.8;margin:0 0 14px;}
+  .t-card .who{font-size:12.5px;opacity:.55;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:720px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{width:100%;background:none;border:none;color:var(--fg);text-align:left;padding:20px 4px;
+    display:flex;justify-content:space-between;align-items:center;font-size:15px;font-family:inherit;}
+  .faq-q .plus{transition:transform .25s;color:var(--gold);font-size:18px;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;opacity:.75;padding:0 4px;}
+  .faq-item.open .faq-a{max-height:200px;padding-bottom:18px;}
+
+  /* ---------- RESERVATION ---------- */
+  .reserve{background:var(--bg-2);}
+  .reserve-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  @media(max-width:860px){.reserve-grid{grid-template-columns:1fr;}}
+  form{display:flex;flex-direction:column;gap:14px;}
+  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.f-row{grid-template-columns:1fr;}}
+  input,select,textarea{
+    padding:12px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--fg);
+    font-family:inherit;font-size:14px;width:100%;
+  }
+  label{font-size:12px;opacity:.6;margin-bottom:4px;display:block;}
+  .field{display:flex;flex-direction:column;}
+  .submit-note{font-size:12.5px;opacity:.55;margin-top:6px;}
+
+  /* ---------- LOCATION ---------- */
+  .location{background:var(--bg);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  @media(max-width:860px){.loc-grid{grid-template-columns:1fr;}}
+  .info-line{display:flex;gap:14px;margin-bottom:16px;font-size:14.5px;}
+  .info-line .label{font-family:'Inter';font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.5;min-width:70px;padding-top:3px;}
+  .map-frame{border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+  .map-frame iframe{width:100%;height:320px;border:0;display:block;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--charcoal);color:var(--sand);padding:60px 7vw 30px;border-top:1px solid rgba(241,230,210,.1);}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  @media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  footer h5{font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin:0 0 14px;}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;opacity:.8;}
+  footer .zh-name{font-family:'Ma Shan Zheng',cursive;font-size:26px;color:var(--gold);}
+  footer .foot-desc{font-size:13px;opacity:.6;max-width:260px;margin-top:10px;}
+  .foot-bottom{border-top:1px solid rgba(241,230,210,.1);padding-top:22px;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px;font-size:12px;opacity:.5;}
+
+  .scroll-top{position:fixed;bottom:26px;right:26px;width:42px;height:42px;border-radius:50%;background:var(--lacquer);
+    color:#fff;border:none;display:none;align-items:center;justify-content:center;font-size:16px;z-index:90;box-shadow:0 8px 20px rgba(0,0,0,.3);}
+  .scroll-top.show{display:flex;}
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <img src="logo.png" alt="东方锅韵 logo">
+      <span class="zh-name">东方锅韵</span>
+    </div>
+    <ul>
+      <li><a href="#why">为什么选择我们</a></li>
+      <li><a href="#menu">菜单</a></li>
+      <li><a href="about-zh.html">关于我们</a></li>
+      <li><a href="gallery-zh.html">图库</a></li>
+      <li><a href="#faq">常见问题</a></li>
+      <li><a href="#location">联系我们</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html" class="lang-switch">العربية</a>
+      <button class="icon-btn" id="darkToggle" title="切换主题">☀</button>
+      <a href="https://wa.me/962547033461" target="_blank" class="cta-btn">立即预订</a>
+      <button class="burger" id="burgerBtn">☰</button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <p class="zh-title">东方锅韵</p>
+    <p class="en-title">Oriental Pot Charm</p>
+    <p class="zh-line">正宗中式自助火锅与夜间烧烤，融合阿拉伯绿洲的悠然气息 — 正对王国大厦</p>
+    <p class="loc">利雅得 · 正对王国大厦 · 每日 13:00 – 次日 03:00</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/962547033461" target="_blank" class="btn solid">立即预订</a>
+      <a href="#menu" class="btn outline">查看菜单</a>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="why" id="why">
+    <p class="eyebrow center">Why Us</p>
+    <p class="section-title center">为什么选择东方锅韵</p>
+    <p class="section-title-en center">Three Floors, One Authentic Experience</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="glyph">火</div><h4>自助火锅</h4><p>自由挑选食材，用您专属的小锅慢慢煮 — 适合家庭和朋友聚会的互动体验。</p></div>
+      <div class="why-card"><div class="glyph">烤</div><h4>正宗夜间烧烤</h4><p>传统中式炭火风味，配合正对王国大厦的夜景，氛围绝佳。</p></div>
+      <div class="why-card"><div class="glyph">茶</div><h4>特色饮品</h4><p>正宗中式饮品系列，从抹茶红豆到传统冰粉，一应俱全。</p></div>
+    </div>
+    <div class="stats" style="margin-top:60px;">
+      <div class="stat"><b data-count="3">0</b><span>不同风格楼层</span></div>
+      <div class="stat"><b data-count="9">0</b><span>特色饮品</span></div>
+      <div class="stat"><b data-count="4">0</b><span>锅底口味</span></div>
+      <div class="stat"><b data-count="1">0</b><span>王国大厦景观</span></div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="menu-section" id="menu">
+    <p class="eyebrow center">Menu</p>
+    <p class="section-title center">菜单</p>
+    <p class="section-title-en center">Choose your ingredients, cook them in your own pot</p>
+
+    <div class="menu-toolbar">
+      <input type="text" id="menuSearch" class="menu-search" placeholder="搜索菜品...">
+    </div>
+    <div class="menu-tabs" id="menuTabs">
+      <button class="tab active" data-cat="all">全部</button>
+      <button class="tab" data-cat="soup">锅底</button>
+      <button class="tab" data-cat="drink">饮品</button>
+      <button class="tab" data-cat="frozen">冰饮</button>
+    </div>
+    <div class="dish-grid" id="dishGrid"></div>
+    <div class="menu-cta-links">
+      <a href="menu-full.pdf" class="btn ghost" style="margin-inline-end:10px;">下载完整菜单 (PDF)</a>
+      <a href="menu-drinks.pdf" class="btn ghost">饮品单 (PDF)</a>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="gallery" id="gallery">
+    <p class="eyebrow center">Gallery</p>
+    <p class="section-title center">环境一览</p>
+    <p class="section-title-en center">望塔台 · 金萤厅 · 天穹厅 — 三层楼，三种氛围</p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <div class="center" style="margin-top:40px;"><a href="gallery-zh.html" class="btn ghost">查看完整图库</a></div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <div class="lightbox-box">
+      <p style="font-family:'Noto Serif SC';font-weight:700;font-size:20px;margin:0 0 6px;" id="lightboxTitle"></p>
+      <p style="opacity:.7;font-size:13.5px;" id="lightboxDesc"></p>
+    </div>
+  </div>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="testimonials">
+    <p class="eyebrow center">Testimonials</p>
+    <p class="section-title center">顾客评价</p>
+    <p class="section-title-en center"></p>
+    <div class="testimonials-grid">
+      <div class="t-card"><div class="stars">★★★★★</div><p>完全不同的火锅体验，从露台看王国大厦的景色令人难忘。</p><div class="who">— 顾客，利雅得</div></div>
+      <div class="t-card"><div class="stars">★★★★★</div><p>这里巧妙地将中式传统与阿拉伯待客之道结合在一起，很少见。</p><div class="who">— 顾客，利雅得</div></div>
+      <div class="t-card"><div class="stars">★★★★★</div><p>三楼的天空之厅本身就是一种体验 — 非常推荐用于夜间聚会。</p><div class="who">— 顾客，利雅得</div></div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <p class="eyebrow center">FAQ</p>
+    <p class="section-title center">常见问题</p>
+    <p class="section-title-en center"></p>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">什么是自助火锅？ <span class="plus">+</span></button>
+        <div class="faq-a">您可以从开放式食材台自由挑选食材（肉类、蔬菜、海鲜等），并使用您桌上专属的小锅自己烹煮。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">可以提前预订吗？ <span class="plus">+</span></button>
+        <div class="faq-a">可以，您可以通过 WhatsApp 或网站上的预订表单进行预订。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">餐厅具体位置在哪？ <span class="plus">+</span></button>
+        <div class="faq-a">利雅得，正对王国大厦 — 详细地图见页面底部。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">营业时间是？ <span class="plus">+</span></button>
+        <div class="faq-a">每日下午1点至次日凌晨3点营业。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESERVATION ============ -->
+  <section class="reserve" id="reserve">
+    <div class="reserve-grid">
+      <div>
+        <p class="eyebrow">Reservations</p>
+        <h2 class="section-title" style="margin-bottom:4px;">预订座位</h2>
+        <p class="section-title-en" style="margin-bottom:14px;"></p>
+        <p style="opacity:.7;font-size:14px;max-width:420px;">填写表单，系统会自动生成一条 WhatsApp 消息，我们将立即收到。</p>
+      </div>
+      <form id="reserveForm">
+        <div class="f-row">
+          <div class="field"><label>姓名</label><input type="text" id="rName" required></div>
+          <div class="field"><label>电话</label><input type="tel" id="rPhone" required></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label>日期</label><input type="date" id="rDate" required></div>
+          <div class="field"><label>时间</label><input type="time" id="rTime" required></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label>人数</label><input type="number" id="rGuests" min="1" value="2" required></div>
+          <div class="field"><label>场合（可选）</label><input type="text" id="rOccasion"></div>
+        </div>
+        <div class="field"><label>备注</label><textarea id="rNotes" rows="3"></textarea></div>
+        <button type="submit" class="btn solid" style="align-self:flex-start;">通过 WhatsApp 发送</button>
+        <p class="submit-note">点击后将自动打开 WhatsApp，并填好您的预订信息。</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ LOCATION ============ -->
+  <section class="location" id="location">
+    <div class="loc-grid">
+      <div>
+        <p class="eyebrow" style="color:var(--lacquer-dark);">Visit Us</p>
+        <h2 class="section-title" style="margin-bottom:4px;">欢迎光临</h2>
+        <p class="section-title-en" style="margin-bottom:20px;"></p>
+        <div class="info-line"><span class="label">地址</span><span>利雅得，正对王国大厦</span></div>
+        <div class="info-line"><span class="label">营业时间</span><span>每日 13:00 – 次日 03:00</span></div>
+        <div class="info-line"><span class="label">预订</span><span><a href="https://wa.me/962547033461" target="_blank" style="text-decoration:underline;">WhatsApp</a> — +962547033461</span></div>
+      </div>
+      <div class="map-frame">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Kingdom+Tower,Riyadh&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <p class="zh-name">东方锅韵</p>
+        <p class="foot-desc">Oriental Pot Charm — 正宗中式自助火锅与夜间烧烤，融合阿拉伯绿洲气息，利雅得正对王国大厦。</p>
+      </div>
+      <div>
+        <h5>快速链接</h5>
+        <ul><li><a href="#menu">菜单</a></li><li><a href="gallery-zh.html">图库</a></li><li><a href="#faq">常见问题</a></li><li><a href="#reserve">预订</a></li></ul>
+      </div>
+      <div>
+        <h5>联系方式</h5>
+        <ul><li>利雅得，正对王国大厦</li><li><a href="https://wa.me/962547033461" target="_blank">WhatsApp: +962547033461</a></li></ul>
+      </div>
+      <div>
+        <h5>关注我们</h5>
+        <ul><li>Instagram <span style="opacity:.5;">(即将上线)</span></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Oriental Pot Charm — Riyadh © 2026</span>
+      <span>版权所有</span>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop">↑</button>
+
+<script>
+  const root = document.documentElement;
+  const darkToggle = document.getElementById('darkToggle');
+  function applyTheme(t){
+    if(t === 'light'){ root.classList.add('light'); darkToggle.textContent = '☾'; }
+    else { root.classList.remove('light'); darkToggle.textContent = '☀'; }
+  }
+  applyTheme(localStorage.getItem('opc-theme') || 'dark');
+  darkToggle.addEventListener('click', () => {
+    const next = root.classList.contains('light') ? 'dark' : 'light';
+    applyTheme(next);
+    localStorage.setItem('opc-theme', next);
+  });
+
+  const dishes = [
+    {zh:'麻辣锅', ar:'مرق حار (مالا)', cat:'soup', price:'—'},
+    {zh:'番茄锅', ar:'مرق الطماطم', cat:'soup', price:'—'},
+    {zh:'清汤锅', ar:'مرق أصلي صافي', cat:'soup', price:'—'},
+    {zh:'菌菇锅', ar:'مرق الفطر', cat:'soup', price:'—'},
+    {zh:'红豆冰沙', ar:'سموذي الفول الأحمر', cat:'drink', price:'—'},
+    {zh:'绿豆冰沙', ar:'سموذي المّش', cat:'drink', price:'—'},
+    {zh:'草莓山楂', ar:'فراولة وزعرور', cat:'drink', price:'—'},
+    {zh:'草莓山楂冰浆', ar:'فراولة وزعرور مثلّج', cat:'frozen', price:'—'},
+    {zh:'芒果百香', ar:'مانجو باشن فروت', cat:'drink', price:'—'},
+    {zh:'红豆抹茶鲜乳', ar:'ماتشا بالحليب والفول الأحمر', cat:'drink', price:'—'},
+    {zh:'原味轻乳茶', ar:'شاي بالحليب الخفيف', cat:'drink', price:'—'},
+    {zh:'芒果冰浆', ar:'مانجو مثلّج', cat:'frozen', price:'—'},
+    {zh:'冰粉', ar:'بينغ فن', cat:'drink', price:'—'},
+  ];
+  const catLabels = {soup:'锅底', drink:'饮品', frozen:'冰饮'};
+  const grid = document.getElementById('dishGrid');
+  let activeCat = 'all';
+  let searchTerm = '';
+
+  function renderDishes(){
+    const filtered = dishes.filter(d => {
+      const catOk = activeCat === 'all' || d.cat === activeCat;
+      const term = searchTerm.trim().toLowerCase();
+      const searchOk = !term || d.zh.toLowerCase().includes(term) || d.ar.toLowerCase().includes(term);
+      return catOk && searchOk;
+    });
+    grid.innerHTML = '';
+    if(filtered.length === 0){
+      grid.innerHTML = '<div class="empty-state">未找到匹配的菜品，请尝试其他关键词。</div>';
+      return;
+    }
+    filtered.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'dish-card';
+      card.innerHTML = `
+        <div class="dish-img">${d.zh}</div>
+        <div class="dish-body">
+          <span class="zh-name">${d.zh}</span>
+          <span class="ar-name ar-sans">${d.ar}</span>
+          <span class="cat-badge">${catLabels[d.cat]}</span>
+          <div class="row"><span class="price">${d.price}</span></div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+  document.getElementById('menuSearch').addEventListener('input', e => { searchTerm = e.target.value; renderDishes(); });
+  document.getElementById('menuTabs').addEventListener('click', e => {
+    if(e.target.classList.contains('tab')){
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      e.target.classList.add('active');
+      activeCat = e.target.dataset.cat;
+      renderDishes();
+    }
+  });
+  renderDishes();
+
+  const galleryItems = [
+    {label:'望塔台', ar:'1/1.3', desc:'露台正对王国大厦，配有降温喷雾系统。'},
+    {label:'金萤厅', ar:'1/1', desc:'二楼大厅，悬挂式金色灯饰与高台座位区。'},
+    {label:'天穹厅', ar:'1/1.4', desc:'三楼大厅，天空造型天花板设计。'},
+    {label:'夜景露台', ar:'1/1.1', desc:'二楼夜间景观，灯光与王国大厦景色交相辉映。'},
+    {label:'烧烤区', ar:'1/1', desc:'夜间烧烤站 — 完整的感官体验。'},
+    {label:'高台座位区', ar:'1/1.2', desc:'二楼高台座位区。'},
+  ];
+  const galleryGrid = document.getElementById('galleryGrid');
+  galleryItems.forEach((g) => {
+    const el = document.createElement('div');
+    el.className = 'g-item';
+    el.style.setProperty('--ar', g.ar);
+    el.textContent = g.label;
+    el.addEventListener('click', () => openLightbox(g));
+    galleryGrid.appendChild(el);
+  });
+  const lightbox = document.getElementById('lightbox');
+  function openLightbox(g){
+    document.getElementById('lightboxTitle').textContent = g.label;
+    document.getElementById('lightboxDesc').textContent = g.desc;
+    lightbox.classList.add('open');
+  }
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  document.getElementById('reserveForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('rName').value;
+    const phone = document.getElementById('rPhone').value;
+    const date = document.getElementById('rDate').value;
+    const time = document.getElementById('rTime').value;
+    const guests = document.getElementById('rGuests').value;
+    const occasion = document.getElementById('rOccasion').value;
+    const notes = document.getElementById('rNotes').value;
+    const msg = `预订 - 东方锅韵\n姓名: ${name}\n电话: ${phone}\n日期: ${date}\n时间: ${time}\n人数: ${guests}\n场合: ${occasion || '-'}\n备注: ${notes || '-'}`;
+    window.open(`https://wa.me/962547033461?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  const stats = document.querySelectorAll('.stat b');
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        let cur = 0;
+        const step = Math.max(1, Math.ceil(target/30));
+        const t = setInterval(() => {
+          cur += step;
+          if(cur >= target){ cur = target; clearInterval(t); }
+          el.textContent = cur;
+        }, 40);
+        statsObserver.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  stats.forEach(s => statsObserver.observe(s));
+
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('show', window.scrollY > 500);
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const burger = document.getElementById('burgerBtn');
+  const navUl = document.querySelector('nav ul');
+  burger.addEventListener('click', () => {
+    const shown = navUl.style.display === 'flex';
+    navUl.style.cssText = shown ? '' : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);padding:20px 7vw;border-bottom:1px solid var(--border);gap:16px;';
+  });
+</script>
+</body>
+</html>
