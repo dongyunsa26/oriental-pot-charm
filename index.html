@@ -142,7 +142,24 @@
     font-family:inherit;font-size:14px;width:100%;
   }
   label{font-size:12px;opacity:.6;margin-bottom:4px;display:block;}
-  .field{display:flex;flex-direction:column;}
+  .field{display:flex;flex-direction:column;position:relative;}
+  .cal-popup{display:none;position:absolute;top:calc(100% + 6px);right:0;left:0;z-index:60;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:14px;
+    box-shadow:0 16px 40px rgba(0,0,0,.35);min-width:260px;}
+  .cal-popup.open{display:block;}
+  .cal-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:10px;font-weight:500;}
+  .cal-back{background:none;border:none;color:var(--gold);font-size:12.5px;cursor:pointer;font-family:inherit;padding:0;}
+  .cal-grid{display:grid;gap:6px;}
+  .cal-years, .cal-months{grid-template-columns:repeat(3,1fr);}
+  .cal-days{grid-template-columns:repeat(7,1fr);}
+  .cal-grid button{background:var(--bg);border:1px solid var(--border);color:var(--fg);border-radius:6px;
+    padding:8px 4px;font-size:12.5px;cursor:pointer;font-family:inherit;}
+  .cal-grid button:hover:not(:disabled){border-color:var(--gold);color:var(--gold);}
+  .cal-grid button:disabled{opacity:.25;cursor:not-allowed;}
+  .cal-grid button.today{border-color:var(--jade);}
+  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px;}
+  .cal-weekdays span{font-size:10.5px;text-align:center;opacity:.5;}
+  .cal-days button{aspect-ratio:1;padding:0;}
   .submit-note{font-size:12.5px;opacity:.55;margin-top:6px;}
 
   /* ---------- LOCATION ---------- */
@@ -316,7 +333,25 @@
           <div class="field"><label>الهاتف</label><input type="tel" id="rPhone" required></div>
         </div>
         <div class="f-row">
-          <div class="field"><label>التاريخ</label><input type="date" id="rDate" required></div>
+          <div class="field">
+            <label>التاريخ</label>
+            <input type="text" id="rDate" readonly required placeholder="اختر التاريخ" autocomplete="off" style="cursor:pointer;">
+            <div class="cal-popup" id="calPopup">
+              <div class="cal-view" id="calYearView">
+                <div class="cal-head"><span>اختر السنة</span></div>
+                <div class="cal-grid cal-years" id="calYears"></div>
+              </div>
+              <div class="cal-view" id="calMonthView" style="display:none;">
+                <div class="cal-head"><button type="button" class="cal-back" data-back="year">‹ السنة</button><span id="calMonthYearLabel"></span></div>
+                <div class="cal-grid cal-months" id="calMonths"></div>
+              </div>
+              <div class="cal-view" id="calDayView" style="display:none;">
+                <div class="cal-head"><button type="button" class="cal-back" data-back="month">‹ الشهر</button><span id="calDayLabel"></span></div>
+                <div class="cal-weekdays" id="calWeekdays"></div>
+                <div class="cal-grid cal-days" id="calDays"></div>
+              </div>
+            </div>
+          </div>
           <div class="field"><label>الوقت</label><input type="time" id="rTime" required></div>
         </div>
         <div class="f-row">
@@ -484,7 +519,96 @@
     });
   });
 
-  // ---------- Reservation form -> WhatsApp ----------
+  // ---------- Custom calendar date picker ----------
+  (function(){
+    const dateInput = document.getElementById('rDate');
+    const popup = document.getElementById('calPopup');
+    const yearView = document.getElementById('calYearView');
+    const monthView = document.getElementById('calMonthView');
+    const dayView = document.getElementById('calDayView');
+    const yearsGrid = document.getElementById('calYears');
+    const monthsGrid = document.getElementById('calMonths');
+    const daysGrid = document.getElementById('calDays');
+    const weekdaysRow = document.getElementById('calWeekdays');
+    const monthYearLabel = document.getElementById('calMonthYearLabel');
+    const dayLabel = document.getElementById('calDayLabel');
+
+    const monthNames = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+    const weekdayNames = ['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+    const today = new Date(); today.setHours(0,0,0,0);
+    let selYear = null, selMonth = null;
+
+    function showView(view){
+      [yearView, monthView, dayView].forEach(v => v.style.display = 'none');
+      view.style.display = 'block';
+    }
+
+    function buildYears(){
+      yearsGrid.innerHTML = '';
+      const startY = today.getFullYear();
+      for(let y = startY; y <= startY + 1; y++){
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.textContent = y;
+        btn.addEventListener('click', () => { selYear = y; buildMonths(); showView(monthView); });
+        yearsGrid.appendChild(btn);
+      }
+    }
+
+    function buildMonths(){
+      monthsGrid.innerHTML = '';
+      monthYearLabel.textContent = selYear;
+      monthNames.forEach((name, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.textContent = name;
+        const isPast = (selYear === today.getFullYear() && idx < today.getMonth());
+        if(isPast) btn.disabled = true;
+        btn.addEventListener('click', () => { selMonth = idx; buildDays(); showView(dayView); });
+        monthsGrid.appendChild(btn);
+      });
+    }
+
+    function buildDays(){
+      weekdaysRow.innerHTML = '';
+      weekdayNames.forEach(w => { const s = document.createElement('span'); s.textContent = w; weekdaysRow.appendChild(s); });
+      dayLabel.textContent = monthNames[selMonth] + ' ' + selYear;
+      daysGrid.innerHTML = '';
+      const firstDay = new Date(selYear, selMonth, 1).getDay();
+      const daysInMonth = new Date(selYear, selMonth + 1, 0).getDate();
+      for(let i = 0; i < firstDay; i++){ daysGrid.appendChild(document.createElement('span')); }
+      for(let d = 1; d <= daysInMonth; d++){
+        const cellDate = new Date(selYear, selMonth, d);
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.textContent = d;
+        if(cellDate < today) btn.disabled = true;
+        if(cellDate.getTime() === today.getTime()) btn.classList.add('today');
+        btn.addEventListener('click', () => {
+          const mm = String(selMonth + 1).padStart(2,'0');
+          const dd = String(d).padStart(2,'0');
+          dateInput.value = `${selYear}-${mm}-${dd}`;
+          dateInput.dataset.iso = `${selYear}-${mm}-${dd}`;
+          popup.classList.remove('open');
+        });
+        daysGrid.appendChild(btn);
+      }
+    }
+
+    dateInput.addEventListener('click', () => {
+      popup.classList.toggle('open');
+      buildYears();
+      showView(yearView);
+    });
+    document.querySelectorAll('.cal-back').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(btn.dataset.back === 'year') showView(yearView);
+        if(btn.dataset.back === 'month') showView(monthView);
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if(!popup.contains(e.target) && e.target !== dateInput) popup.classList.remove('open');
+    });
+  })();
+
+
   document.getElementById('reserveForm').addEventListener('submit', e => {
     e.preventDefault();
     const name = document.getElementById('rName').value;
